@@ -1,4 +1,4 @@
-package helloTest.java;
+package helloTest;
 
 
 import java.io.IOException;
@@ -13,33 +13,36 @@ public class Searcher {
 	    return s.hasNext() ? s.next() : "";
 	}
 	
-public static String[] tag(String sentence) throws IOException{
+public static List<String> searchWN( String word, String wnarg, String usage ) throws IOException{
 	
 	File home = new File("/Users/russellarnold");
 	List<String> theArgs = new ArrayList<String>();
 	theArgs.add("python");
-	//theArgs.add("getTagsTagger.py");
-	theArgs.add("testingpy.py");
-	theArgs.add("still");
-	theArgs.add("working");
-	//for( String r: sentence.split(" "))
-	//	theArgs.add(r);
+	theArgs.add("search_wn.py");
+	theArgs.add(word);
+	theArgs.add(wnarg);
+	theArgs.add(usage);
 	//System.out.println(theArgs.toString());
-	System.out.println(theArgs.toString());
 	
 	ProcessBuilder pb = new ProcessBuilder(theArgs);
 	
 	pb.directory(home);
 	 Process p = pb.start();
 	String temp = convertStreamToString(p.getInputStream());
-	System.out.println(temp);
-	String[] tagged = temp.split(",");
-	System.out.println(tagged.toString());
-	return tagged;
+	//System.out.println(temp);
+	String[] temp2 = temp.split(",");
+	List<String> words = new ArrayList<String>();
+	for(String s: temp2){
+		String s2 = s.trim();
+		int newlen = s2.length()-1;
+		if (newlen > 0) words.add(s.trim().substring(1,newlen));
+	}
+	//System.out.println(words.toString());
+	return words;
 }
 public static void main(String[] args){
 	try{
-	tag("what is happening?");
+	System.out.println(searchWN("house","hype","v").toString());
 }
 	catch(IOException e){
 		System.out.println(e.toString());

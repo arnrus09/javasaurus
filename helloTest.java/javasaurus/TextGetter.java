@@ -1,5 +1,4 @@
-package helloTest.java;
-
+package javasaurus;
 
 import java.io.*;
 
@@ -48,7 +47,7 @@ public class TextGetter
 	
 
 	public static void main (String args[]){
-		TextGetter tg = new TextGetter("/Users/russellarnold/irconjs.txt");
+		TextGetter tg = new TextGetter("soule_sorted4.txt");
 		String result = tg.getText();
 		while(result != null){
 				System.out.println(result);

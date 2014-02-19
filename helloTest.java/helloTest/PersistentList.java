@@ -1,4 +1,4 @@
-package helloTest.java;
+package helloTest;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 //mostly borrowed from anonymous stack overflow blogger, changed for use as List istead of Map
 
-public class PersistentList extends ArrayList {
+public class PersistentList extends ArrayList<String> {
     private static final long serialVersionUID = 7127639025670585367L;
     private final File file;
 
